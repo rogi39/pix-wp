@@ -6,7 +6,7 @@ function download_photo($filePath, $filename) {
 			ob_end_clean();
 		}
 		header('Content-Description: File Transfer');
-		header("Content-type:application/vnd.ms-excel");
+		header("Content-type:image/jpeg");
 		header('Content-Disposition: attachment; filename=' . $filename);
 		header('Content-Transfer-Encoding: binary');
 		header('Expires: 0');
