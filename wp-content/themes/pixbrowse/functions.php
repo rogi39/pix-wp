@@ -140,3 +140,9 @@ add_action('edit_user_profile_update', 'my_user_profile_update_action');
 function my_user_profile_update_action($user_id) {
 	update_user_meta($user_id, 'account_wallet', $_POST['account_wallet']);
 }
+
+
+function my_acf_json_save_point($path) {
+	return get_stylesheet_directory() . '/acf-json';
+}
+add_filter('acf/settings/save_json', 'my_acf_json_save_point');

@@ -118,7 +118,7 @@ function login_action() {
 		$creds['user_login'] = $_POST['login_email'];
 		$creds['user_password'] = $_POST['login_password'];
 		$creds['remember'] = true;
-		$user = wp_signon($creds, true);
+		$user = wp_signon($creds, false);
 		http_response_code(200);
 		echo json_encode(['result' => 'ok', 'message' => 'You have successfully logged in.', 'redirect' => '/wp-admin/']);
 		die();
