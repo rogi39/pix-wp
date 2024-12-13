@@ -23,4 +23,9 @@ function site_scripts() {
 			'buy_product_nonce_field' => wp_create_nonce('buy_product_nonce_field')
 		]);
 	}
+	if (is_page('downloads')) {
+		wp_localize_script('main', 'downloadNonce', [
+			'download_nonce_field' => wp_create_nonce('download_nonce_field')
+		]);
+	}
 }
