@@ -1,6 +1,4 @@
-<?php
-if ($args['without'] !== true) {
-?>
+<?php if (empty($args)) { ?>
 	<footer class="footer">
 		<div class="container">
 			<div class="footer__row">

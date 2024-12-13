@@ -15,10 +15,7 @@ $current_user = wp_get_current_user();
 </head>
 
 <body>
-	<?php
-
-	if ($args['without'] !== true) {
-	?>
+	<?php if (empty($args)) { ?>
 		<header class="header">
 			<div class="header__overlay"></div>
 			<div class="container">
