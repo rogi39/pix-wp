@@ -1,0 +1,1 @@
+<div class="footer-block">Hold on to the high-quality images you have a fondness for.</div>
