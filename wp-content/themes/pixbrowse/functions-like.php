@@ -47,8 +47,8 @@ function checkLikeOnPost($post) {
 	$get_liked_posts = get_user_meta($current_user->ID, 'likes', true);
 	if (!empty($get_liked_posts)) {
 		if (in_array($post->ID, $get_liked_posts)) {
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
