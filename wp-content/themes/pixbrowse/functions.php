@@ -7,6 +7,7 @@ require get_template_directory() . '/functions-mail.php';
 require get_template_directory() . '/functions-login.php';
 require get_template_directory() . '/functions-profile.php';
 require get_template_directory() . '/functions-like.php';
+require get_template_directory() . '/functions-buy-and-download-photo.php';
 
 // запрет и перенапраление с wp-admin
 add_filter('init', 'my_registration_page_redirect');
