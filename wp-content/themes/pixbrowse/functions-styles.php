@@ -2,7 +2,7 @@
 add_action('wp_enqueue_scripts', 'site_scripts');
 
 function site_scripts() {
-	$ver = '1.0.2';
+	$ver = '1.0.4';
 	wp_enqueue_style('main', get_template_directory_uri() . '/css/app.min.css', [], $ver);
 	wp_enqueue_style('style', get_stylesheet_uri(), [], $ver);
 
@@ -19,7 +19,7 @@ function site_scripts() {
 		]);
 	}
 	if (is_singular('photos')) {
-		wp_localize_script('main', 'buyProduct', [
+		wp_localize_script('main', 'buyProductNonce', [
 			'buy_product_nonce_field' => wp_create_nonce('buy_product_nonce_field')
 		]);
 	}

@@ -273,6 +273,44 @@ if (like) {
 	like.addEventListener('click', likePost);
 }
 
+// страница /photos/post/
+let buy = document.querySelector('#buy');
+if (buy) {
+	const buyProduct = (e) => {
+		let trg = e.currentTarget;
+		let postId = trg.closest('#photo').dataset.productId;
+		let form = document.createElement('form');
+		let formData = new FormData(form);
+		formData.append("action", "buy_product");
+		formData.append("post_id", postId);
+		formData.append("buy_product_nonce_field", buyProductNonce.buy_product_nonce_field);
+		fetch('/wp-admin/admin-ajax.php', {
+				method: "POST",
+				body: formData,
+			})
+			.then(response => response.json())
+			.then((data) => {
+				if (data.result === 'ok') {
+					formMessageResponse(true, data.message);
+					if (data.redirect_url) {
+						setTimeout(() => {
+							window.location.href = data.redirect_url;
+						}, 1000);
+					}
+				} else if (data.result === 'false') {
+					formMessageResponse(false, data.message);
+					if (data.redirect_url) {
+						setTimeout(() => {
+							window.location.href = data.redirect_url;
+						}, 1000);
+					}
+				}
+			});
+	}
+	buy.addEventListener('click', buyProduct);
+}
+
+
 // страница /profile/
 const forms = document.querySelectorAll('.send-form');
 if (forms) {

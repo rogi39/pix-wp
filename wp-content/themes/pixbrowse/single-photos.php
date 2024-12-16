@@ -68,46 +68,6 @@
 								</a>
 							<?php } ?>
 
-
-
-							<script>
-								let buy = document.querySelector('#buy');
-								if (buy) {
-									buy.addEventListener('click', buyProduct);
-								}
-
-								function buyProduct(e) {
-									let trg = e.currentTarget;
-									let postId = trg.closest('#photo').dataset.productId;
-									let form = document.createElement('form');
-									let formData = new FormData(form);
-									formData.append("action", "buy_product");
-									formData.append("post_id", postId);
-									formData.append("buy_product_nonce_field", buyProduct.buy_product_nonce_field);
-									fetch('/wp-admin/admin-ajax.php', {
-											method: "POST",
-											body: formData,
-										})
-										.then(response => response.json())
-										.then((data) => {
-											if (data.result === 'ok') {
-												formMessageResponse(true, data.message);
-												if (data.redirect_url) {
-													setTimeout(() => {
-														window.location.href = data.redirect_url;
-													}, 1000);
-												}
-											} else if (data.result === 'false') {
-												formMessageResponse(false, data.message);
-												if (data.redirect_url) {
-													setTimeout(() => {
-														window.location.href = data.redirect_url;
-													}, 1000);
-												}
-											}
-										});
-								}
-							</script>
 						</div>
 						<div class="photo__item">Includes our <a href="#">standard license</a></div>
 						<div class="photo__item">PixBrowse photo ID: <span><?php echo $post->ID; ?></span></div>
