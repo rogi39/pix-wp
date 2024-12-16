@@ -94,6 +94,6 @@
 		</div>
 	</div>
 
-	<div class="footer-block">Hold on to the high-quality images you have a fondness for.</div>
+	<?php echo get_template_part("template_parts/footer-block"); ?>
 </main>
 <?php get_footer(); ?>

@@ -147,6 +147,7 @@
 					$post_query->post;
 					echo get_template_part("template_parts/grid-item");
 				}
+				wp_reset_postdata();
 				?>
 
 			</div>

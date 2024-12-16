@@ -7,7 +7,10 @@
 
 			<?php
 			$tags = get_the_terms($post->ID, 'tags');
-			if (!empty($tags)) { ?>
+
+
+			if ($tags !== false) {
+			?>
 				<ul class="tag-list tag-list_single">
 					<?php
 					foreach ($tags as $tag) {
@@ -72,9 +75,11 @@
 						<div class="photo__item">Includes our <a href="#">standard license</a></div>
 						<div class="photo__item">PixBrowse photo ID: <span><?php echo $post->ID; ?></span></div>
 						<div class="photo__item">Upload date: <span> <?php echo get_the_date('M d, Y'); ?></span></div>
-						<div class="photo__item">Categories:
-							<?php
-							$terms = get_the_terms($post->ID, 'categories');
+
+						<?php
+						$terms = get_the_terms($post->ID, 'categories');
+						if ($terms !== false) {
+							echo '<div class="photo__item">Categories:';
 							$len = count($terms);
 							$i = 1;
 							foreach ($terms as $term) {
@@ -82,8 +87,11 @@
 								if ($len !== $i) echo ', ';
 								$i++;
 							}
-							?>
-						</div>
+							echo '</div>';
+						}
+
+						?>
+
 						<div class="photo__item">Quality: Standard</div>
 						<div class="photo__item">Resolution: <span><?php echo wp_get_attachment_metadata(get_post_thumbnail_id($post->ID))['width']; ?> x <?php echo wp_get_attachment_metadata(get_post_thumbnail_id($post->ID))['height']; ?> pixels</span></div>
 						<div class="photo__item">Extension: JPG</div>
@@ -97,83 +105,91 @@
 		</div>
 	</div>
 
-	<div class="section section_pt0">
-		<div class="container">
-			<div class="title-row">
-				<div class="title">Photos from same series</div>
-				<a href="#" class="title-link">View all photos</a>
-			</div>
-			<div class="grid">
-				<div class="grid__gutter"></div>
-				<div class="grid__sizer"></div>
 
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item1.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item2.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item3.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item4.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item5.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item6.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item7.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item8.jpg" alt="alt" class="grid__img">
-				</div>
-			</div>
-		</div>
-	</div>
+	<?php
+	if ($terms !== false) {
 
-	<div class="section section_pt0">
-		<div class="container">
-			<div class="title-row">
-				<div class="title">Similar images</div>
-				<a href="#" class="title-link">View all photos</a>
-			</div>
-			<div class="grid">
-				<div class="grid__gutter"></div>
-				<div class="grid__sizer"></div>
+		$post_query = new WP_Query([
+			'post_type' => 'photos',
+			'posts_per_page' => 8,
+			'tax_query' => [
+				[
+					'taxonomy' => 'categories',
+					'field'    => 'slug',
+					'terms'    => $terms[0]->slug
+				],
+			]
+		]);
 
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item1.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item2.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item3.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item4.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item5.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item6.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item7.jpg" alt="alt" class="grid__img">
-				</div>
-				<div class="grid__item">
-					<img src="<?php echo get_template_directory_uri(); ?>/images/dest/item8.jpg" alt="alt" class="grid__img">
+		if ($post_query->have_posts()) {
+	?>
+			<div class="section section_pt0">
+				<div class="container">
+					<div class="title-row">
+						<div class="title">Photos from same series</div>
+						<a href="<?php echo get_term_link($terms[0]->slug, 'categories'); ?>" class="title-link">View all photos</a>
+					</div>
+					<div class="grid">
+						<div class="grid__gutter"></div>
+						<div class="grid__sizer"></div>
+						<?php
+						while ($post_query->have_posts()) {
+							$post_query->the_post();
+							$post_query->post;
+							echo get_template_part("template_parts/grid-item");
+						} ?>
+					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+		<?php } ?>
+		<?php wp_reset_postdata(); ?>
+	<?php } ?>
 
 
-	<div class="footer-block">Hold on to the high-quality images you have a fondness for.</div>
+	<?php
+	if ($tags !== false) {
+		$tagsIds = [];
+		foreach ($tags as $tag) {
+			array_push($tagsIds, $tag->slug);
+		}
+
+		$post_query = new WP_Query([
+			'post_type' => 'photos',
+			'posts_per_page' => 8,
+			'tax_query' => [
+				[
+					'taxonomy' => 'tags',
+					'field'    => 'slug',
+					'terms'    => $tagsIds
+				],
+			]
+		]);
+
+		if ($post_query->have_posts()) {
+	?>
+			<div class="section section_pt0">
+				<div class="container">
+					<div class="title-row">
+						<div class="title">Similar images</div>
+						<a href="<?php echo get_term_link($tags[0]->slug, 'tags'); ?>" class="title-link">View all photos</a>
+					</div>
+					<div class="grid">
+						<div class="grid__gutter"></div>
+						<div class="grid__sizer"></div>
+						<?php
+						while ($post_query->have_posts()) {
+							$post_query->the_post();
+							$post_query->post;
+							echo get_template_part("template_parts/grid-item");
+						} ?>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+		<?php wp_reset_postdata(); ?>
+	<?php } ?>
+
+
+	<?php echo get_template_part("template_parts/footer-block"); ?>
 </main>
 <?php get_footer(); ?>
