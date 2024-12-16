@@ -12,7 +12,7 @@
 		<div class="container">
 			<div class="title-row">
 				<div class="title">Explore Stunning Visuals.</div>
-				<a href="#" class="btn">View pricing</a>
+				<a href="/pricing/" class="btn">View pricing</a>
 			</div>
 			<div class="category">
 				<div class="category__row">
