@@ -312,8 +312,25 @@ if (forms) {
 	});
 }
 
+function openTab(e) {
+	if (e.target.closest('.qa-item__title-block').parentElement.classList.contains("open")) {
+		e.target.closest('.qa-item__title-block').nextElementSibling.style.maxHeight = "0";
+		e.target.closest('.qa-item__title-block').parentElement.classList.remove("open");
+	} else {
+		e.target.closest('.qa-item__title-block').nextElementSibling.style.maxHeight = e.target.closest('.qa-item__title-block').nextElementSibling.scrollHeight + "px";
+		e.target.closest('.qa-item__title-block').parentElement.classList.add("open");
+	}
+}
 
-
+let qa = document.querySelectorAll('.qa-item');
+if (qa) {
+	qa.forEach((el, i) => {
+		el.addEventListener('click', openTab);
+		el.style.zIndex = i + 1;
+		el.style.top = 60 + 5 * (i + 1) + 'px';
+		// el.style.height = 20 + 'px';
+	});
+}
 
 
 
