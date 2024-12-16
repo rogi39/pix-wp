@@ -112,6 +112,7 @@
 		$post_query = new WP_Query([
 			'post_type' => 'photos',
 			'posts_per_page' => 8,
+			'post__not_in' => [$post->ID],
 			'tax_query' => [
 				[
 					'taxonomy' => 'categories',
@@ -156,6 +157,7 @@
 		$post_query = new WP_Query([
 			'post_type' => 'photos',
 			'posts_per_page' => 8,
+			'post__not_in' => [$post->ID],
 			'tax_query' => [
 				[
 					'taxonomy' => 'tags',
