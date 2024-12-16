@@ -24,7 +24,7 @@ get_header();
 								<div class="billing-credits__total-text">Total credits</div>
 							</div>
 							<div class="billing-credits__right">
-								<a href="#" class="billing-credits__btn">Buy now</a>
+								<a href="/pricing/" class="billing-credits__btn">Buy now</a>
 							</div>
 						</div>
 					</div>

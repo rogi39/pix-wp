@@ -32,7 +32,7 @@ $current_user = wp_get_current_user();
 							<div class="menu__close">&#10006;</div>
 							<ul class="menu__list">
 								<li class="menu__item"><a href="/photos/" class="menu__link">Explore</a></li>
-								<li class="menu__item"><a href="#" class="menu__link">Pricing</a></li>
+								<li class="menu__item"><a href="/pricing/" class="menu__link">Pricing</a></li>
 								<?php
 								if (!is_user_logged_in()) {
 								?>

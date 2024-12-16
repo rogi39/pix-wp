@@ -76,7 +76,7 @@ function buy_product_action() {
 
 	if ($user_wallet < $price_product) {
 		http_response_code(422);
-		echo json_encode(['result' => 'false', 'message' => 'Not enough credits!', 'redirect_url' => '/profile/billing/']);
+		echo json_encode(['result' => 'false', 'message' => 'Not enough credits!', 'redirect_url' => '/pricing/']);
 		die();
 	}
 
@@ -100,23 +100,32 @@ function buy_product_action() {
 
 	update_user_meta($user_id, 'account_wallet', $user_wallet - $price_product);
 
-	$get_purchased_products = get_user_meta($current_user->ID, 'purchased_products', true);
-	if (!empty($get_purchased_products)) {
-		array_push($get_purchased_products, $post_id);
-		update_user_meta($current_user->ID, 'purchased_products', $get_purchased_products);
+	if (update_purchased_products($post_id) === true) {
+		http_response_code(200);
+		echo json_encode(['result' => 'ok', 'message' => 'Thank you for your purchase', 'redirect_url' => '/profile/downloads/']);
 	} else {
-		update_user_meta($current_user->ID, 'purchased_products', [$post_id]);
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Something went wrong!']);
 	}
-	http_response_code(200);
-	echo json_encode(['result' => 'ok', 'message' => 'Thank you for your purchase', 'redirect_url' => '/profile/downloads/']);
 	die();
 }
 
+function update_purchased_products($id) {
+	global $current_user;
+	$get_purchased_products = get_user_meta($current_user->ID, 'purchased_products', true);
+	if (!empty($get_purchased_products)) {
+		array_push($get_purchased_products, $id);
+		if (update_user_meta($current_user->ID, 'purchased_products', $get_purchased_products) !== false) return true;
+	} else {
+		if (update_user_meta($current_user->ID, 'purchased_products', [$id]) !== false) return true;
+	}
+	return false;
+}
 
 function checkPurchasedProduct($post_id) {
 	global $current_user;
 	$get_purchased_products = get_user_meta($current_user->ID, 'purchased_products', true);
-	if (in_array($post_id, $get_purchased_products)) return true;
+	if (!empty($get_purchased_products) && in_array($post_id, $get_purchased_products)) return true;
 	return false;
 }
 

@@ -11,7 +11,7 @@
 						<li class="footer__item"><a href="#" class="footer__link">About Us</a></li>
 						<li class="footer__item"><a href="#" class="footer__link">Content Contributors</a></li>
 						<li class="footer__item"><a href="#" class="footer__link">Careers</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Pricing</a></li>
+						<li class="footer__item"><a href="/pricing/" class="footer__link">Pricing</a></li>
 						<li class="footer__item"><a href="#" class="footer__link">Contact Us</a></li>
 					</ul>
 				</div>
