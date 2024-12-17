@@ -108,7 +108,7 @@ function pricing_action() {
 		"autoConfirm" => true,
 		"expireAt" => gmdate("Y-m-d\TH:i:s\Z", strtotime('+1 hour')),
 		"amount" => [
-			"value" => $productPrice,
+			"value" => strval($productPrice),
 			"currency" => 'EUR'
 		],
 		"customFields" => [
