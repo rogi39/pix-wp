@@ -6,16 +6,16 @@
 				<h1 class="title title_tac title_fw400">Choose the perfect image plan for your projects</h1>
 				<div class="pricing__text">Access the best content from our extensive library with worry-free licensing and full resolution images.</div>
 				<div class="pricing__credits">1 IMAGE = 500 CREDITS or less</div>
-				<form class="pricing__form">
+				<form class="pricing__form send-form" action="pricing">
 					<div class="pricing__form-title">Buy an exact amount</div>
 					<div class="pricing__form-text">Choose how many images you want to buy by inputing the exact amount yourself.</div>
 					<div class="pricing__form-card">
 						<div class="pricing__form-card-title">Enter your number of Credits</div>
-						<input type="number" class="pricing__form-card-input" value="1000">
+						<input type="number" class="pricing__form-card-input" value="1000" name="pricing_sum">
 						<div class="pricing__form-card-credits">€1.00 / per 100 credits</div>
 					</div>
 					<input type="text" class="pricing__form-promocode" placeholder="Enter a promocode">
-
+					<?php wp_nonce_field('pricing_nonce_action', 'pricing_nonce_field'); ?>
 					<button class="pricing__form-btn form__btn">Buy now</button>
 					<div class="pricing__form-text">Need a large amount of credits?<br><a href="/contacts/">Contact us</a> for a special offer!</div>
 				</form>

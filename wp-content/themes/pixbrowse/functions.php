@@ -6,6 +6,8 @@ require get_template_directory() . '/functions-menu.php';
 require get_template_directory() . '/functions-mail.php';
 require get_template_directory() . '/functions-login.php';
 require get_template_directory() . '/functions-profile.php';
+require get_template_directory() . '/functions-billing.php';
+require get_template_directory() . '/functions-payment.php';
 require get_template_directory() . '/functions-like.php';
 require get_template_directory() . '/functions-buy-and-download-photo.php';
 
@@ -111,36 +113,6 @@ function my_post_queries($query) {
 	}
 }
 add_action('pre_get_posts', 'my_post_queries');
-
-
-// мета поле счет аккаунта в админ
-add_action('show_user_profile', 'my_user_profile_edit_action');
-add_action('edit_user_profile', 'my_user_profile_edit_action');
-function my_user_profile_edit_action($user) {
-	$account_wallet = get_user_meta($user->ID, 'account_wallet', true);
-?>
-	<h3>Счет аккаунта</h3>
-	<table class="form-table">
-		<tbody>
-			<tr>
-				<th>
-					<label for="account_wallet">Сумма</label>
-				</th>
-				<td>
-					<input type="number" name="account_wallet" id="account_wallet" value="<?php echo $account_wallet ? $account_wallet : 0; ?>" class="regular-text">
-				</td>
-			</tr>
-		</tbody>
-	</table>
-<?php
-}
-
-// обновление мета поле счет аккаунта в админ
-add_action('personal_options_update', 'my_user_profile_update_action');
-add_action('edit_user_profile_update', 'my_user_profile_update_action');
-function my_user_profile_update_action($user_id) {
-	update_user_meta($user_id, 'account_wallet', $_POST['account_wallet']);
-}
 
 
 function my_acf_json_save_point($path) {

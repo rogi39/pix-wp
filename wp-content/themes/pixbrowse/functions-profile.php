@@ -74,3 +74,107 @@ function profile_update_action() {
 	}
 	die();
 }
+
+// мета поле счет аккаунта в админ
+add_action('show_user_profile', 'my_user_profile_edit_action');
+add_action('edit_user_profile', 'my_user_profile_edit_action');
+function my_user_profile_edit_action($user) {
+	$account_wallet = get_user_meta($user->ID, 'account_wallet', true);
+	$account_country = get_user_meta($user->ID, 'account_country', true);
+	$account_city = get_user_meta($user->ID, 'account_city', true);
+	$account_zip_code = get_user_meta($user->ID, 'account_zip_code', true);
+	$account_state = get_user_meta($user->ID, 'account_state', true);
+	$account_address = get_user_meta($user->ID, 'account_address', true);
+	$account_phone = get_user_meta($user->ID, 'account_phone', true);
+	$account_birth = get_user_meta($user->ID, 'account_birth', true);
+?>
+	<h3>Account wallet</h3>
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th>
+					<label for="account_wallet">Sum</label>
+				</th>
+				<td>
+					<input type="number" name="account_wallet" id="account_wallet" value="<?php echo $account_wallet ? $account_wallet : 0; ?>" class="regular-text">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<h3>Account billing</h3>
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th>
+					<label for="account_country">Country</label>
+				</th>
+				<td>
+					<input type="text" name="account_country" id="account_country" value="<?php echo $account_country ? $account_country : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_city">City</label>
+				</th>
+				<td>
+					<input type="text" name="account_city" id="account_city" value="<?php echo $account_city ? $account_city : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_zip_code">Zip code</label>
+				</th>
+				<td>
+					<input type="text" name="account_zip_code" id="account_zip_code" value="<?php echo $account_zip_code ? $account_zip_code : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_state">State</label>
+				</th>
+				<td>
+					<input type="text" name="account_state" id="account_state" value="<?php echo $account_state ? $account_state : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_address">Address</label>
+				</th>
+				<td>
+					<input type="text" name="account_address" id="account_address" value="<?php echo $account_address ? $account_address : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_phone">Phone</label>
+				</th>
+				<td>
+					<input type="text" name="account_phone" id="account_phone" value="<?php echo $account_phone ? $account_phone : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_birth">Birth</label>
+				</th>
+				<td>
+					<input type="text" name="account_birth" id="account_birth" value="<?php echo $account_birth ? $account_birth : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<?php
+}
+
+// обновление мета поле счет аккаунта в админ
+add_action('personal_options_update', 'my_user_profile_update_action');
+add_action('edit_user_profile_update', 'my_user_profile_update_action');
+function my_user_profile_update_action($user_id) {
+	update_user_meta($user_id, 'account_wallet', $_POST['account_wallet']);
+	update_user_meta($user_id, 'account_country', $_POST['account_country']);
+	update_user_meta($user_id, 'account_city', $_POST['account_city']);
+	update_user_meta($user_id, 'account_zip_code', $_POST['account_zip_code']);
+	update_user_meta($user_id, 'account_state', $_POST['account_state']);
+	update_user_meta($user_id, 'account_address', $_POST['account_address']);
+	update_user_meta($user_id, 'account_phone', $_POST['account_phone']);
+	update_user_meta($user_id, 'account_birth', $_POST['account_birth']);
+}

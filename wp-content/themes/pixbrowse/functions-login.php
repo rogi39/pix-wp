@@ -62,7 +62,14 @@ function register_action() {
 		'user_email' => $email,
 		'user_pass'  => $password,
 		'meta_input' => [
-			'account_wallet' => 0
+			'account_wallet' => 0,
+			'account_country' => '',
+			'account_city' => '',
+			'account_zip_code' => '',
+			'account_state' => '',
+			'account_address' => '',
+			'account_phone' => '',
+			'account_birth' => '',
 		]
 	];
 
