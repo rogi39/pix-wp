@@ -6,7 +6,7 @@
 				<h1 class="title title_tac title_fw400">Choose the perfect image plan for your projects</h1>
 				<div class="pricing__text">Access the best content from our extensive library with worry-free licensing and full resolution images.</div>
 				<div class="pricing__credits">1 IMAGE = 500 CREDITS or less</div>
-				<form class="pricing__form send-form" action="pricing">
+				<form class="pricing__form send-form btn-modal" action="pricing">
 					<div class="pricing__form-title">Buy an exact amount</div>
 					<div class="pricing__form-text">Choose how many images you want to buy by inputing the exact amount yourself.</div>
 					<div class="pricing__form-card">
@@ -96,4 +96,10 @@
 
 	<?php echo get_template_part("template_parts/footer-block"); ?>
 </main>
+<div class="modal" id="modal-callback">
+	<div class="modal__block">
+		<div class="modal__close">&#10006;</div>
+		<div id="widget"></div>
+	</div>
+</div>
 <?php get_footer(); ?>

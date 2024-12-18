@@ -311,6 +311,40 @@ if (buy) {
 }
 
 
+const openModal = (e) => {
+	e.preventDefault();
+	let modal = e.currentTarget.dataset.idModal ? document.getElementById(e.currentTarget.dataset.idModal) : document.getElementById("modal-callback");
+	let wsb = widthScrollBar();
+	fadeIn(modal, 300, "flex");
+	document.body.classList.add("noscroll");
+	document.querySelector(".header").style.paddingRight = wsb + "px";
+	document.querySelector(".footer").style.paddingRight = wsb + "px";
+	document.querySelector("main").style.paddingRight = wsb + "px";
+}
+
+let btnModals = document.querySelectorAll(".btn-modal");
+btnModals.forEach((el) => {
+	el.addEventListener("click", (e) => {
+		openModal(e);
+	});
+});
+
+const closeModal = (e) => {
+	if (e.target.closest('.modal__close') || e.target.classList.contains('modal')) {
+		fadeOut(e.currentTarget, 300);
+		setTimeout(() => {
+			document.body.classList.remove("noscroll");
+			document.querySelector(".header").style.paddingRight = "0px";
+			document.querySelector(".footer").style.paddingRight = "0px";
+			document.querySelector("main").style.paddingRight = "0px";
+		}, 300);
+	}
+}
+let modals = document.querySelectorAll('.modal');
+modals.forEach(el => {
+	el.addEventListener('click', closeModal);
+});
+
 // страница /profile/
 const forms = document.querySelectorAll('.send-form');
 if (forms) {
