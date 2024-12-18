@@ -2,7 +2,7 @@
 add_action('wp_enqueue_scripts', 'site_scripts');
 
 function site_scripts() {
-	$ver = '1.0.4';
+	$ver = '1.0.5';
 	wp_enqueue_style('main', get_template_directory_uri() . '/css/app.min.css', [], $ver);
 	wp_enqueue_style('style', get_stylesheet_uri(), [], $ver);
 
@@ -13,6 +13,9 @@ function site_scripts() {
 
 	// wp_enqueue_script( 'reacaptcha_js', 'https://www.google.com/recaptcha/api.js?render=6LfdrnwaAAAAABDn2Il7mXGDJuqnRIwyXsGV-3YS', '', '', true);
 	wp_enqueue_script('main', get_template_directory_uri() . '/js/app.min.js', [], $ver, true);
+	if (is_page('pricing')) {
+		wp_enqueue_script('pay', get_template_directory_uri() . '/libs/pay.js', [], $ver, true);
+	}
 	if (is_page('favourites') || is_singular('photos')) {
 		wp_localize_script('main', 'likeNonce', [
 			'like_nonce_field' => wp_create_nonce('like_nonce_field')

@@ -113,7 +113,7 @@ function pricing_action() {
 		],
 		"customFields" => [
 			"cf1" => $current_user->user_email,
-			"cf2" => $current_user->first_name ? $current_user->first_name : 'Anon',
+			"cf2" => strval($current_user->ID),
 			"cf3" => getBillingFields()['account_country'],
 			"cf4" => getBillingFields()['account_address'],
 			"cf5" => $productName

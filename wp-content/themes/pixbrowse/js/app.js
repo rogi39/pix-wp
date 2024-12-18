@@ -324,7 +324,23 @@ if (forms) {
 			})
 			.then(response => response.json())
 			.then((data) => {
-				if (data.result === 'ok') {
+				if (data.result === 'ok' && data.type === 'ORDER' || data.result === 'false' && data.type === 'ORDER') {
+					if (data.result === 'false') {
+						formMessageResponse(false, data.message);
+					} else {
+						let widget = document.querySelector('#widget');
+						PSP.Widget.init({
+							display: {
+								mode: "embedded",
+								params: {
+									container: widget,
+									pcidss: "full",
+								},
+							},
+							payUrl: data.payUrl,
+						});
+					}
+				} else if (data.result === 'ok') {
 					formMessageResponse(true, data.message);
 					setTimeout(() => {
 						window.location.href = data.redirect;
