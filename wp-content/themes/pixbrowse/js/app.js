@@ -313,7 +313,7 @@ if (buy) {
 
 const openModal = (e) => {
 	e.preventDefault();
-	let modal = e.currentTarget.dataset.idModal ? document.getElementById(e.currentTarget.dataset.idModal) : document.getElementById("modal-callback");
+	let modal = document.getElementById("modal-callback");
 	let wsb = widthScrollBar();
 	fadeIn(modal, 300, "flex");
 	document.body.classList.add("noscroll");
@@ -322,16 +322,10 @@ const openModal = (e) => {
 	document.querySelector("main").style.paddingRight = wsb + "px";
 }
 
-let btnModals = document.querySelectorAll(".btn-modal");
-btnModals.forEach((el) => {
-	el.addEventListener("click", (e) => {
-		openModal(e);
-	});
-});
-
 const closeModal = (e) => {
 	if (e.target.closest('.modal__close') || e.target.classList.contains('modal')) {
 		fadeOut(e.currentTarget, 300);
+		document.querySelector('#widget').innerHTML = '';
 		setTimeout(() => {
 			document.body.classList.remove("noscroll");
 			document.querySelector(".header").style.paddingRight = "0px";
@@ -362,6 +356,7 @@ if (forms) {
 					if (data.result === 'false') {
 						formMessageResponse(false, data.message);
 					} else {
+						openModal(e);
 						let widget = document.querySelector('#widget');
 						PSP.Widget.init({
 							display: {
