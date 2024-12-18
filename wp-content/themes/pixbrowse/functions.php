@@ -94,7 +94,7 @@ function sanitize_file_name_filter($filename) {
 add_action('wp_insert_post', 'change_slug');
 function change_slug($post_id) {
 	$slug = 'photos';
-	if ($slug != $_POST['post_type']) {
+	if (isset($_POST['post_type']) && $slug != $_POST['post_type']) {
 		return;
 	}
 	$post = get_post($post_id);
