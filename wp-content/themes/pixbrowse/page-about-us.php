@@ -6,8 +6,8 @@
 				<div class="about-hero__title">PixBrowse</div>
 				<div class="about-hero__text">Your massive library of high-quality images for you to explore.</div>
 				<div class="about-hero__btn-row">
-					<a href="#" class="about-hero__btn">Sign up</a>
-					<a href="#" class="about-hero__btn about-hero__btn_reverse">Start browsing</a>
+					<a href="/register/" class="about-hero__btn">Sign up</a>
+					<a href="/" class="about-hero__btn about-hero__btn_reverse">Start browsing</a>
 				</div>
 			</div>
 		</div>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="achieve__try">
 					<div class="achieve__try-title">Try our PixBrowse</div>
-					<a href="#" class="achieve__try-btn">Sign Up</a>
+					<a href="/register/" class="achieve__try-btn">Sign Up</a>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
 				<div class="about-craft__title">Craft something extraordinary</div>
 				<div class="about-craft__text">Motivated by our own struggle to find high-quality, useful images, we created PixBrowse to fill a need for artists around the world. Today, thousands of artists have downloaded PixBrowse photos to use in their presentations, artwork, mockups, and other projects.</div>
 				<div class="about-craft__btn-block">
-					<a href="#" class="about-craft__btn">Sign Up</a>
+					<a href="/register/" class="about-craft__btn">Sign Up</a>
 				</div>
 
 			</div>

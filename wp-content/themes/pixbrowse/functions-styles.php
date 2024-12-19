@@ -2,7 +2,7 @@
 add_action('wp_enqueue_scripts', 'site_scripts');
 
 function site_scripts() {
-	$ver = '1.0.6';
+	$ver = '1.0.7';
 	wp_enqueue_style('main', get_template_directory_uri() . '/css/app.min.css', [], $ver);
 	wp_enqueue_style('style', get_stylesheet_uri(), [], $ver);
 
