@@ -8,22 +8,29 @@
 				<div class="footer__col">
 					<div class="footer__title">Company</div>
 					<ul class="footer__list">
-						<li class="footer__item"><a href="#" class="footer__link">About Us</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Content Contributors</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Careers</a></li>
-						<li class="footer__item"><a href="/pricing/" class="footer__link">Pricing</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Contact Us</a></li>
+						<?php
+						wp_nav_menu([
+							'menu' => 'menu_main_footer_company',
+							'theme_location' => 'menu_main_footer_company',
+							'items_wrap' => '%3$s',
+							'container' => false,
+							'walker' => new footer_menu_Walker
+						]);
+						?>
 					</ul>
 				</div>
 				<div class="footer__col">
 					<div class="footer__title">Information</div>
 					<ul class="footer__list">
-						<li class="footer__item"><a href="#" class="footer__link">Imprint</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Privacy Policy</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Terms of Use</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Content License Agreement</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">User Agreement</a></li>
-						<li class="footer__item"><a href="#" class="footer__link">Editorial Content Supply Agreement</a></li>
+						<?php
+						wp_nav_menu([
+							'menu' => 'menu_main_footer_information',
+							'theme_location' => 'menu_main_footer_information',
+							'items_wrap' => '%3$s',
+							'container' => false,
+							'walker' => new footer_menu_Walker
+						]);
+						?>
 					</ul>
 				</div>
 				<div class="footer__col">

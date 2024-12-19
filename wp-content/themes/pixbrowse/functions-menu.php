@@ -5,21 +5,20 @@ function nav_menus() {
 
 	register_nav_menus(
 		array(
-			'menu_main_header' => 'Меню в хедер',
+			'menu_main_footer_company' => 'Menu footer company',
+			'menu_main_footer_information' => 'Menu footer information',
 		)
 	);
 }
 
-class main_nav_menu_Walker extends Walker_Nav_Menu {
+class footer_menu_Walker extends Walker_Nav_Menu {
 	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-		static $i = 1;
 		if ($depth == 0) {
 			if ($item->current) {
-				$output .= '<li class="menu__item"><a href="' . $item->url . '" class="menu__link active"><span class="menu__list-span">' . $i . '.</span>' . $item->title . '</a>';
+				$output .= '<li class="footer__item"><a href="' . $item->url . '" class="footer__link active">' . $item->title . '</a>';
 			} else {
-				$output .= '<li class="menu__item"><a href="' . $item->url . '" class="menu__link"><span class="menu__list-span">' . $i . '.</span>' . $item->title . '</a>';
+				$output .= '<li class="footer__item"><a href="' . $item->url . '" class="footer__link">' . $item->title . '</a>';
 			}
-			$i++;
 		}
 	}
 }
