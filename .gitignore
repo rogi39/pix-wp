@@ -16,6 +16,7 @@
 /readme.html
 /wp-*.php
 /xmlrpc.php
+/payments-callback.php
 
 # Configuration
 wp-config.php

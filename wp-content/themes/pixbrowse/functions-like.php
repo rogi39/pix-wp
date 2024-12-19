@@ -3,11 +3,9 @@ add_action('wp_ajax_like_post', 'like_post_action');
 add_action('wp_ajax_nopriv_like_post', 'like_post_action');
 
 function like_post_action() {
-
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') die();
 
 	$_POST = cleanPostArr($_POST);
-	global $current_user;
 
 	/* в форме: wp_nonce_field('_nonce_action', '_nonce_field'); */
 	if (!wp_verify_nonce($_REQUEST['like_nonce_field'], 'like_nonce_field')) {
@@ -15,6 +13,8 @@ function like_post_action() {
 		echo json_encode(['result' => 'false', 'message' => 'Something went wrong!']);
 		die();
 	}
+
+	global $current_user;
 	$post_id = $_POST['post_id'];
 	$get_liked_posts = get_user_meta($current_user->ID, 'likes', true);
 	if (!empty($get_liked_posts)) {

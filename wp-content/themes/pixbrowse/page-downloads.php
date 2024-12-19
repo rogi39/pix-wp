@@ -18,7 +18,6 @@ get_header();
 					<div class="table__col table__col_dates-single">Date</div>
 					<div class="table__col table__col_time-single">Method</div>
 					<div class="table__col table__col_teacher-single"></div>
-					<!-- <div class="table__col table__col_details-single">Детали</div> -->
 				</div>
 				<?php
 				$get_liked_posts = get_user_meta($current_user->ID, 'purchased_products', true);

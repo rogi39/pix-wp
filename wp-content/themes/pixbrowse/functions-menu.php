@@ -7,6 +7,7 @@ function nav_menus() {
 		array(
 			'menu_main_footer_company' => 'Menu footer company',
 			'menu_main_footer_information' => 'Menu footer information',
+			'cabinet_menu' => 'Cabinet menu',
 		)
 	);
 }
@@ -18,6 +19,19 @@ class footer_menu_Walker extends Walker_Nav_Menu {
 				$output .= '<li class="footer__item"><a href="' . $item->url . '" class="footer__link active">' . $item->title . '</a>';
 			} else {
 				$output .= '<li class="footer__item"><a href="' . $item->url . '" class="footer__link">' . $item->title . '</a>';
+			}
+		}
+	}
+}
+
+class cabinet_menu_Walker extends Walker_Nav_Menu {
+	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+		$icon = get_field('cabinet_svg', $item->ID);
+		if ($depth == 0) {
+			if ($item->current) {
+				$output .= '<li class="cabinet-menu__item"><a href="' . $item->url . '" class="cabinet-menu__link active"><img src="' . $icon . '" > ' .  $item->title . '</a>';
+			} else {
+				$output .= '<li class="cabinet-menu__item"><a href="' . $item->url . '" class="cabinet-menu__link"><img src="' . $icon . '" > '  . $item->title . '</a>';
 			}
 		}
 	}

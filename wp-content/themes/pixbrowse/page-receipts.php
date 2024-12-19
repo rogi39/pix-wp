@@ -18,7 +18,6 @@ get_header();
 					<div class="table__col table__col_dates-single">Date</div>
 					<div class="table__col table__col_time-single">Method</div>
 					<div class="table__col table__col_teacher-single"></div>
-					<!-- <div class="table__col table__col_details-single">Детали</div> -->
 				</div>
 				<div class="table__row">
 					<a href="#" class="table__col table__col_mounth-single">

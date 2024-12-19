@@ -66,9 +66,6 @@ get_header();
 							<button class="billing-form__btn">Save changes</button>
 						</div>
 					</form>
-					<script>
-
-					</script>
 				</div>
 			</div>
 		</div>

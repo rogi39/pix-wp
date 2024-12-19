@@ -36,8 +36,8 @@
 				<div class="footer__col">
 					<div class="footer__title">Contact & Support</div>
 					<div class="footer__address">DigitalHunter OÜ (16974359)<br>Kesklinna linnaosa, Vesivärava tn 50-201<br>10152 Tallinn<br>Estonia</div>
-					<span>Phone:<a href="+37253086084" class="footer__phone"> +372 5308 6084</a></span>
-					<a href="support@pixbrowse.com" class="footer__phone">support@pixbrowse.com</a>
+					<span>Phone:<a href="tel:+37253086084" class="footer__phone"> +372 5308 6084</a></span>
+					<a href="mailto:support@pixbrowse.com" class="footer__phone">support@pixbrowse.com</a>
 					<div>
 						<a target="_blank" href="https://x.com/PixBrowse" class="footer__soc">
 							<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" class="social-icon-svg">
@@ -79,7 +79,7 @@
 					<img src="<?php echo get_template_directory_uri(); ?>/images/visa.jpeg" alt="visa">
 					<img src="<?php echo get_template_directory_uri(); ?>/images/master.png" alt="visa">
 				</div>
-				<div class="footer__bottom-copy">© 2024 PixBrowse. The PixBrowse design is a trademark of PixBrowse. Browse millions of high-quality stock photos, illustrations, and videos.</div>
+				<div class="footer__bottom-copy">© <?php echo date("Y"); ?> PixBrowse. The PixBrowse design is a trademark of PixBrowse. Browse millions of high-quality stock photos, illustrations, and videos.</div>
 			</div>
 		</div>
 	</footer>
