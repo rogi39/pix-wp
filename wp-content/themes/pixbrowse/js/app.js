@@ -187,11 +187,13 @@ if (register) {
 					inputs.forEach(el => {
 						el.addEventListener('input', () => {
 							el.removeAttribute("style");
+							el.classList.remove("error");
 						});
 					});
 					if (data.errors) {
 						for (let el in data.errors) {
 							document.querySelector(`input[name=${el}]`).style.borderColor = "#da4c4c";
+							document.querySelector(`input[name=${el}]`).classList.add('error');
 						}
 					}
 				}
@@ -394,6 +396,7 @@ if (forms) {
 					inputs.forEach(el => {
 						el.addEventListener('input', () => {
 							el.removeAttribute("style");
+							el.classList.remove("error");
 							if (e.target.getAttribute('action') === 'billing_update') el.previousElementSibling.removeAttribute("style");
 						});
 					});
@@ -405,6 +408,7 @@ if (forms) {
 						} else {
 							for (let el in data.errors) {
 								document.querySelector(`input[name=${el}]`).style.borderColor = "#da4c4c";
+								document.querySelector(`input[name=${el}]`).classList.add('error');
 							}
 						}
 					}

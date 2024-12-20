@@ -32,6 +32,12 @@ function register_action() {
 	if (empty($_POST['register_password'])) {
 		$errors['register_password'] = 'register_password';
 	}
+	if (!isset($_POST['register_offers'])) {
+		$errors['register_offers'] = 'register_offers';
+	}
+	if (!isset($_POST['register_privacy'])) {
+		$errors['register_privacy'] = 'register_privacy';
+	}
 
 	if (empty($errors) && strlen($_POST['register_password']) < 8) {
 		$errors['register_password'] = 'register_password';

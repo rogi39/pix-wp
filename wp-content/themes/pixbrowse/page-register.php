@@ -30,6 +30,16 @@ get_header('', ['without' => true]);
 							<div class="form__input-block">
 								<input type="password" class="form__input" name="register_password_repeat" placeholder="Repeat password">
 							</div>
+							<div class="form__check">
+								<input type="checkbox" class="form__checkbox" id="form-offers" name="register_offers">
+								<label for="form-offers" class="form__checkbox-label"></label>
+								<div class="form__policy">Yes, I want emails with visual inspiration, special offers and more.</div>
+							</div>
+							<div class="form__check">
+								<input type="checkbox" class="form__checkbox" id="form-privacy" name="register_privacy">
+								<label for="form-privacy" class="form__checkbox-label"></label>
+								<div class="form__policy">I accept the <a href="/user-agreement/">User Agreement</a>, <a href="/privacy-policy/">Privacy Policy</a> and <a href="/terms-of-use/">Terms of Use</a>.</div>
+							</div>
 							<?php wp_nonce_field('register_nonce_action', 'register_nonce_field'); ?>
 							<button class="form__btn">Sign up Now</button>
 						</form>
