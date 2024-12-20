@@ -20,6 +20,12 @@ function download_photo_action() {
 		die();
 	}
 
+	if (checkConfirmAcc() == false) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Account is not confirm!', 'redirect_url' => '/profile/']);
+		die();
+	}
+
 	$post_id = $_POST['post_id'];
 	if ('publish' !== get_post_status($post_id)) {
 		http_response_code(422);
@@ -57,6 +63,12 @@ function buy_product_action() {
 	if (!is_user_logged_in()) {
 		http_response_code(422);
 		echo json_encode(['result' => 'false', 'message' => 'User is not authorized!', 'redirect_url' => '/login/']);
+		die();
+	}
+
+	if (checkConfirmAcc() == false) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Account is not confirm!', 'redirect_url' => '/profile/']);
 		die();
 	}
 

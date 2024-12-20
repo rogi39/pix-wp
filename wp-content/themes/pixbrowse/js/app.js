@@ -264,7 +264,12 @@ if (like) {
 				if (data.result === 'ok') {
 					// formMessageResponse(true, data.message);
 				} else if (data.result === 'false') {
-					// formMessageResponse(false, data.message);
+					formMessageResponse(false, data.message);
+					if (data.redirect_url) {
+						setTimeout(() => {
+							window.location.href = data.redirect_url;
+						}, 1000);
+					}
 					// btn.textContent = btnText;
 					// btn.removeAttribute('disabled');
 				}

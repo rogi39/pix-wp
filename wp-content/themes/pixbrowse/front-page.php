@@ -140,7 +140,8 @@
 				<?php
 				$post_query = new WP_Query([
 					'post_type' => 'photos',
-					'posts_per_page' => 8
+					'posts_per_page' => 8,
+					'orderby' => 'rand'
 				]);
 				while ($post_query->have_posts()) {
 					$post_query->the_post();

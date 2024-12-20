@@ -112,7 +112,7 @@ function my_post_queries($query) {
 		}
 	}
 }
-add_action('pre_get_posts', 'my_post_queries');
+/* add_action('pre_get_posts', 'my_post_queries'); */
 
 
 function my_acf_json_save_point($path) {

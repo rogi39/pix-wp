@@ -93,12 +93,18 @@ function pricing_action() {
 		die();
 	}
 
+	if (checkConfirmAcc() == false) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Account is not confirm!', 'redirect' => '/profile/']);
+		die();
+	}
 
 	if (checkRequiredBillingFields() === false) {
 		http_response_code(422);
 		echo json_encode(['result' => 'false', 'message' => 'Please update billing information!', 'redirect' => '/profile/billing/']);
 		die();
 	}
+
 	global $current_user;
 	$productPrice = (1 / 100) * intval($_POST['pricing_sum']);
 	$productName = $_POST['pricing_sum'] . ' credits';

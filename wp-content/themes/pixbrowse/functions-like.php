@@ -13,6 +13,11 @@ function like_post_action() {
 		echo json_encode(['result' => 'false', 'message' => 'Something went wrong!']);
 		die();
 	}
+	if (checkConfirmAcc() == false) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Account is not confirm!', 'redirect_url' => '/profile/']);
+		die();
+	}
 
 	global $current_user;
 	$post_id = $_POST['post_id'];

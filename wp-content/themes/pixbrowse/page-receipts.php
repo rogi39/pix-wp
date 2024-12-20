@@ -3,7 +3,10 @@ if (!is_user_logged_in()) {
 	wp_redirect(home_url() . '/login/');
 	exit;
 }
-
+if (checkConfirmAcc() == false) {
+	wp_redirect(home_url() . '/profile/');
+	exit;
+}
 get_header();
 ?>
 <main>

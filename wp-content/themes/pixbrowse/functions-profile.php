@@ -87,6 +87,8 @@ function my_user_profile_edit_action($user) {
 	$account_address = get_user_meta($user->ID, 'account_address', true);
 	$account_phone = get_user_meta($user->ID, 'account_phone', true);
 	$account_birth = get_user_meta($user->ID, 'account_birth', true);
+	$account_verify = get_user_meta($user->ID, 'account_verify', true);
+	$account_code = get_user_meta($user->ID, 'account_code', true);
 ?>
 	<h3>Account wallet</h3>
 	<table class="form-table">
@@ -162,6 +164,27 @@ function my_user_profile_edit_action($user) {
 			</tr>
 		</tbody>
 	</table>
+	<h3>Verify account</h3>
+	<table class="form-table">
+		<tbody>
+			<tr>
+				<th>
+					<label for="account_country">Verify?</label>
+				</th>
+				<td>
+					<input type="text" name="account_verify" id="account_verify" value="<?php echo $account_verify ? $account_verify : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+			<tr>
+				<th>
+					<label for="account_country">Verify code</label>
+				</th>
+				<td>
+					<input type="text" name="account_code" id="account_code" value="<?php echo $account_code ? $account_code : ''; ?>" class="regular-text">
+				</td>
+			</tr>
+		</tbody>
+	</table>
 <?php
 }
 
@@ -177,4 +200,6 @@ function my_user_profile_update_action($user_id) {
 	update_user_meta($user_id, 'account_address', $_POST['account_address']);
 	update_user_meta($user_id, 'account_phone', $_POST['account_phone']);
 	update_user_meta($user_id, 'account_birth', $_POST['account_birth']);
+	update_user_meta($user_id, 'account_verify', $_POST['account_verify']);
+	update_user_meta($user_id, 'account_code', $_POST['account_code']);
 }

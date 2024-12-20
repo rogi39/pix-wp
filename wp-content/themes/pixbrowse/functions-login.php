@@ -70,6 +70,8 @@ function register_action() {
 			'account_address' => '',
 			'account_phone' => '',
 			'account_birth' => '',
+			'account_verify' => 'false',
+			'account_code'  => '',
 		]
 	];
 
@@ -164,4 +166,11 @@ function login_action() {
 	}
 
 	die();
+}
+
+function checkConfirmAcc() {
+	global $current_user;
+	$account_verify = get_user_meta($current_user->ID, 'account_verify', true);
+	if ($account_verify == 'true') return true;
+	return false;
 }
