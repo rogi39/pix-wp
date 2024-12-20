@@ -38,8 +38,8 @@
 						</a>
 					</div>
 					<div class="category__col">
-						<a href="/tags/flowers/" class="category__item">
-							<div class="category__name">Flowers</div>
+						<a href="/tags/ai/" class="category__item">
+							<div class="category__name">Generative AI</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="category__arr">
 							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/cat4.jpg" alt="cat" class="category__img">
 						</a>
@@ -154,6 +154,7 @@
 			</div>
 		</div>
 	</div>
+	<?php /* 
 	<div class="section section_pt0">
 		<div class="container">
 			<div class="title title_mb">Browse all categories</div>
@@ -175,6 +176,7 @@
 			</ul>
 		</div>
 	</div>
+	 */ ?>
 	<div class="section section_stock">
 		<div class="container">
 			<div class="title title_mb">Get free stock photos, illustrations and videos</div>
@@ -183,22 +185,22 @@
 				<div class="stock-cat__row">
 					<div class="stock-cat__col">
 						<a href="/categories/architecture/" class="stock-cat__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/stock_cat1.jpg" alt="stock_cat1" class="stock-cat__item-img">
-							<div class="stock-cat__item-title">Architecture</div>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/p3.jpg" alt="stock_cat1" class="stock-cat__item-img">
+							<div class="stock-cat__item-title">Backgrounds</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="stock-cat__item-svg">
 						</a>
 					</div>
 					<div class="stock-cat__col">
 						<a href="/categories/landscapes/" class="stock-cat__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/stock_cat2.jpg" alt="stock_cat1" class="stock-cat__item-img">
-							<div class="stock-cat__item-title">Landscapes</div>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/p2.jpg" alt="stock_cat1" class="stock-cat__item-img">
+							<div class="stock-cat__item-title">Meadows</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="stock-cat__item-svg">
 						</a>
 					</div>
 					<div class="stock-cat__col">
 						<a href="/categories/nature/" class="stock-cat__item">
-							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/stock_cat3.jpg" alt="stock_cat1" class="stock-cat__item-img">
-							<div class="stock-cat__item-title">Nature</div>
+							<img src="<?php echo get_template_directory_uri(); ?>/images/p1.jpg" alt="stock_cat1" class="stock-cat__item-img">
+							<div class="stock-cat__item-title">Mountains</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="stock-cat__item-svg">
 						</a>
 					</div>
