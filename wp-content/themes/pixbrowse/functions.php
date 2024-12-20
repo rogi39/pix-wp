@@ -119,3 +119,12 @@ function my_acf_json_save_point($path) {
 	return get_stylesheet_directory() . '/acf-json';
 }
 add_filter('acf/settings/save_json', 'my_acf_json_save_point');
+
+
+function SearchFilter($query) {
+	if ($query->is_search) {
+		$query->set('post_type', 'photos');
+	}
+	return $query;
+}
+add_filter('pre_get_posts', 'SearchFilter');

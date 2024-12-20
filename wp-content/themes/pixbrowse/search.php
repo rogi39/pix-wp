@@ -15,6 +15,7 @@
 							<a href="<?php echo get_the_permalink(); ?>" class="search-item">
 								<h2 class="search-item__title"><?php echo $i; ?>) <?php the_title(); ?></h2>
 								<p class="search-item__text"><?php the_excerpt(); ?></p>
+								<?php the_post_thumbnail("thumbnail", array("alt" => get_the_title())); ?>
 								<div class="search-item__link">Read more</div>
 							</a>
 							<?php $i++; ?>
