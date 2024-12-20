@@ -376,9 +376,11 @@ if (forms) {
 					}
 				} else if (data.result === 'ok') {
 					formMessageResponse(true, data.message);
-					setTimeout(() => {
-						window.location.href = data.redirect;
-					}, 1000);
+					if (data.redirect) {
+						setTimeout(() => {
+							window.location.href = data.redirect;
+						}, 1000);
+					}
 				} else if (data.result === 'false') {
 					formMessageResponse(false, data.message);
 

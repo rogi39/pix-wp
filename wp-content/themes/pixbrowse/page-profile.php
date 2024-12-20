@@ -18,7 +18,6 @@ $account_code = get_user_meta($current_user->ID, 'account_code', true);
 				<div class="profile__form-block">
 					<form class="profile__form profile__form_mb send-form" action="send_confirm_code">
 						<div class="title title_mb">Confirm account by email</div>
-						<input type="hidden" name="user_id" value="<?php echo $current_user->ID; ?>">
 						<?php wp_nonce_field('send_confirm_code_nonce_action', 'send_confirm_code_nonce_field'); ?>
 						<button class="profile__form-btn">Send code to <?php echo $current_user->user_email; ?></button>
 					</form>

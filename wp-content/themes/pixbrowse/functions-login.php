@@ -72,6 +72,7 @@ function register_action() {
 			'account_birth' => '',
 			'account_verify' => 'false',
 			'account_code'  => '',
+			'account_code_timestamp'  => '',
 		]
 	];
 
@@ -168,9 +169,101 @@ function login_action() {
 	die();
 }
 
+
+add_action('wp_ajax_send_confirm_code', 'send_confirm_code_action');
+add_action('wp_ajax_nopriv_send_confirm_code', 'send_confirm_code_action');
+
+function send_confirm_code_action() {
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST') die();
+
+	$_POST = cleanPostArr($_POST);
+
+	/* в форме: wp_nonce_field('_nonce_action', '_nonce_field'); */
+	if (!wp_verify_nonce($_POST['send_confirm_code_nonce_field'], 'send_confirm_code_nonce_action')) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Something went wrong!']);
+		die();
+	}
+
+	if (!is_user_logged_in()) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'User is not authorized!', 'redirect_url' => '/login/']);
+		die();
+	}
+
+	global $current_user;
+
+	$account_code_timestamp = get_user_meta($current_user->ID, 'account_code_timestamp', true);
+
+	if (!empty($account_code_timestamp) && strtotime(date('Y-m-d H:i:s')) < $account_code_timestamp) {
+		$minutes = date('i:s', $account_code_timestamp - strtotime(date('Y-m-d H:i:s')));
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'You can resend the email in ' . $minutes]);
+		die();
+	}
+
+	update_user_meta($current_user->ID, 'account_code_timestamp', strtotime(date('Y-m-d H:i:s', strtotime('+60 seconds'))));
+
+	$generateCode = generateRandomString(6);
+	if (update_user_meta($current_user->ID, 'account_code', $generateCode)) {
+		http_response_code(200);
+		echo json_encode(['result' => 'ok', 'message' => 'Sent the code to your email']);
+		wp_mail($current_user->user_email, 'PixBrowse - confirm your account', $generateCode);
+	}
+	die();
+}
+
+add_action('wp_ajax_enter_confirm_code', 'enter_confirm_code_action');
+add_action('wp_ajax_nopriv_enter_confirm_code', 'enter_confirm_code_action');
+
+function enter_confirm_code_action() {
+	if ($_SERVER['REQUEST_METHOD'] !== 'POST') die();
+
+	$_POST = cleanPostArr($_POST);
+
+	/* в форме: wp_nonce_field('_nonce_action', '_nonce_field'); */
+	if (!wp_verify_nonce($_POST['enter_confirm_code_nonce_field'], 'enter_confirm_code_nonce_action')) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'Something went wrong!']);
+		die();
+	}
+
+	if (!is_user_logged_in()) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'message' => 'User is not authorized!', 'redirect_url' => '/login/']);
+		die();
+	}
+
+	global $current_user;
+	$account_code = intval(get_user_meta($current_user->ID, 'account_code', true));
+	$confirm_code = intval($_POST['confirm_code']);
+
+	if ($account_code === $confirm_code) {
+		update_user_meta($current_user->ID, 'account_verify', 'true');
+		http_response_code(200);
+		echo json_encode(['result' => 'ok',  'message' => 'Account verified!', 'redirect' => '/profile/']);
+	} else {
+		$errors['confirm_code'] = 'confirm_code';
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'errors' => $errors,  'message' => 'Invalid code!']);
+	}
+	die();
+}
+
 function checkConfirmAcc() {
 	global $current_user;
 	$account_verify = get_user_meta($current_user->ID, 'account_verify', true);
 	if ($account_verify == 'true') return true;
 	return false;
+}
+
+
+function generateRandomString($length = 10) {
+	$characters = '0123456789';
+	$charactersLength = strlen($characters);
+	$randomString = '';
+	for ($i = 0; $i < $length; $i++) {
+		$randomString .= $characters[random_int(0, $charactersLength - 1)];
+	}
+	return $randomString;
 }
