@@ -37,6 +37,9 @@ $gqo = get_queried_object()
 					?>
 				</div>
 			<?php } ?>
+			<?php if (function_exists('wp_pagenavi')) {
+				wp_pagenavi();
+			} ?>
 		</div>
 	</div>
 
