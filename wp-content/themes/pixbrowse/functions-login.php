@@ -240,6 +240,18 @@ function enter_confirm_code_action() {
 		die();
 	}
 
+	$errors = [];
+
+	if (empty($_POST['confirm_code'])) {
+		$errors['confirm_code'] = 'confirm_code';
+	}
+
+	if (!empty($errors)) {
+		http_response_code(422);
+		echo json_encode(['result' => 'false', 'errors' => $errors, 'message' => 'Please fill in the required fields!']);
+		die();
+	}
+
 	global $current_user;
 	$account_code = intval(get_user_meta($current_user->ID, 'account_code', true));
 	$confirm_code = intval($_POST['confirm_code']);
