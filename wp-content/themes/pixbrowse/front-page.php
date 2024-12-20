@@ -179,7 +179,7 @@
 	 */ ?>
 	<div class="section section_stock">
 		<div class="container">
-			<div class="title title_mb">Get free stock photos, illustrations and videos</div>
+			<div class="title title_mb">Get photos and illustrations</div>
 			<p>Each week, our experts select a photo from our exclusive Signature collection and make it free to download, with free illustrations and video clips available monthly.</p>
 			<div class="stock-cat">
 				<div class="stock-cat__row">
