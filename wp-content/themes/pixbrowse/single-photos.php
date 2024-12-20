@@ -74,7 +74,7 @@
 						</div>
 						<div class="photo__item">Includes our <a href="/content-license-agreement/">standard license</a></div>
 						<div class="photo__item">PixBrowse photo ID: <span><?php echo $post->ID; ?></span></div>
-						<div class="photo__item">Upload date: <span> <?php echo get_the_date('M d, Y'); ?></span></div>
+						<?php /* <div class="photo__item">Upload date: <span> <?php echo get_the_date('M d, Y'); ?></span></div> */ ?>
 
 						<?php
 						$terms = get_the_terms($post->ID, 'categories');
