@@ -17,7 +17,7 @@
 			<div class="category">
 				<div class="category__row">
 					<div class="category__col">
-						<a href="/tags/nature/" class="category__item">
+						<a href="/categories/nature/" class="category__item">
 							<div class="category__name">Nature</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="category__arr">
 							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/cat1.jpg" alt="cat" class="category__img">
@@ -31,7 +31,7 @@
 						</a>
 					</div>
 					<div class="category__col">
-						<a href="/tags/abstraction/" class="category__item">
+						<a href="/tags/abstract/" class="category__item">
 							<div class="category__name">Abstraction</div>
 							<img src="<?php echo get_template_directory_uri(); ?>/images/arrow.svg" alt="arr" class="category__arr">
 							<img src="<?php echo get_template_directory_uri(); ?>/images/dest/cat3.jpg" alt="cat" class="category__img">
